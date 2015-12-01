@@ -17,6 +17,7 @@ lazy val sonicReducerSettings = Seq(
   homepage := Some(url("http://github.com/rklaehn/sonicreducer")),
 
   // release stuff
+  credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
   releaseCrossBuild := true,
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   publishMavenStyle := true,
