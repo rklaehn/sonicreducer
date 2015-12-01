@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/rklaehn/sonicreducer.png)](https://travis-ci.org/rklaehn/sonicreducer)
+[![codecov.io](http://codecov.io/github/rklaehn/sonicreducer/coverage.svg?branch=master)](http://codecov.io/github/rklaehn/sonicreducer?branch=master)
 
 # SonicReducer
 
