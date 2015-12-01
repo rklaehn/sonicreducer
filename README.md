@@ -4,11 +4,11 @@
 
 This is a tiny library for reducing arrays or traversables in an hierarchical way. This can turn O(n^2) operations into O(n log(n)) operations in some cases.
 
-Imagine you had to concatenate a large number of strings without using a StringBuilder. The most straightforward way to do this would be `strings.reduce(_ + _)`. But that is O(n<sup>2</sup>). Using hierarchical reduction, this can be done in O(n log(n)) without too much effort `Reducer.reduce(strings)(_ + _).get`.
+Imagine you had to concatenate a large number of Strings without using a StringBuilder. The most straightforward way to do this would be `strings.reduce(_ + _)`. But that is O(n<sup>2</sup>). Using hierarchical reduction, this can be done in O(n log(n)) without too much effort `Reducer.reduce(strings)(_ + _).get`.
 
 ***Of course this assumes that the operation used for reduction is associative.***
 
-When reducing arrays, simple indexing is used. When reducing traversables, an internal buffer of size 32 is used. This is big enough for collections of up to 2^32 elements. There is also a lower level stateful API.
+When reducing arrays, simple indexing is used. When reducing traversables, an internal buffer of size 32 is used. This is big enough for collections of up to 2<sup>32</sup> elements. There is also a lower level stateful API.
 
 ```
 Seq(1,2,3,4,5,6,7,8).reduceLeft(_ + _)
@@ -43,7 +43,6 @@ Significantly different (p ~= 0)
     First     34.63 ms   95% CI 34.43 ms - 34.84 ms
     Second    1.655 ms   95% CI 1.629 ms - 1.681 ms
 ```
-
 
 ### Copyright and License
 
