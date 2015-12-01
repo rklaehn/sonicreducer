@@ -6,7 +6,11 @@ lazy val sonicReducerSettings = Seq(
   crossScalaVersions := Seq("2.10.5", "2.11.7"),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
-    "org.scalatest" %%% "scalatest" % "3.0.0-M7" % "test"
+    "org.scalatest" %%% "scalatest" % "3.0.0-M7" % "test",
+    "org.spire-math" %% "spire" % "0.11.0" % "test",
+
+    // thyme
+    "ichi.bench" % "thyme" % "0.1.1" % "test" from "https://github.com/Ichoran/thyme/raw/9ff531411e10c698855ade2e5bde77791dd0869a/Thyme.jar"
   ),
   scalacOptions ++= Seq(
     "-deprecation",
@@ -23,14 +27,14 @@ lazy val sonicReducerSettings = Seq(
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := Function.const(false),
-  publishTo <<= (version).apply { v =>
+  publishTo <<= version { v =>
     val nexus = "https://oss.sonatype.org/"
     if (v.trim.endsWith("SNAPSHOT"))
       Some("Snapshots" at nexus + "content/repositories/snapshots")
     else
       Some("Releases" at nexus + "service/local/staging/deploy/maven2")
   },
-  pomExtra := (
+  pomExtra :=
     <scm>
       <url>git@github.com:rklaehn/sonicreducer.git</url>
       <connection>scm:git:git@github.com:rklaehn/sonicreducer.git</connection>
@@ -42,7 +46,7 @@ lazy val sonicReducerSettings = Seq(
         <url>http://github.com/rklaehn/</url>
       </developer>
     </developers>
-  ),
+  ,
   releaseProcess := Seq[ReleaseStep](
     checkSnapshotDependencies,
     inquireVersions,

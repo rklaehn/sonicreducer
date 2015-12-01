@@ -2,9 +2,26 @@
 
 ### Overview
 
-This is a tiny library for reducing sequences in an hierarchical way.
+This is a tiny library for reducing sequences in an hierarchical way. I mainly published this to teach myself how to
+publish to maven, but you might nevertheless find it useful.
+
+``
+Array(1,2,3,4).reduceLeft(_ + _)
+
+(((1+2)+3)+4)
+
+Array(1,2,3,4).reduceRight(_ + _)
+
+(1+(2+(3+4)))
+
+Reducer.reduceArray(Array(1,2,3,4))
+
+(1+2)+(3+4)
+```
 
 ### Getting SonicReducer
+
+
 
 ### Examples
 
