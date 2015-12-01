@@ -11,15 +11,13 @@ Imagine you had to concatenate a large number of strings without using a StringB
 When reducing arrays, simple indexing is used. When reducing traversables, an internal buffer of size 32 is used. This is big enough for collections of up to 2^32 elements. There is also a lower level stateful API.
 
 ```
-Array(1,2,3,4,5,6,7,8).reduceLeft(_ + _)
-
+Seq(1,2,3,4,5,6,7,8).reduceLeft(_ + _)
 (((((((1+2)+3)+4)+5)+6)+7)+8)
 
-Array(1,2,3,4,5,6,7,8).reduceRight(_ + _)
-
+Seq(1,2,3,4,5,6,7,8).reduceRight(_ + _)
 (1+(2+(3+(4+(5+(6+(7+8)))))))
 
-Reducer.reduceArray(Array(1,2,3,4,5,6,7,8))(_ + _)
+Reducer.reduce(Seq(1,2,3,4,5,6,7,8))(_ + _)
 ((1+2)+(3+4))+((5+6)+(7+8))
 ```
 
@@ -34,6 +32,8 @@ val th = Thyme.warmed(warmth = Thyme.HowWarm.BenchOff, verbose = println)
 val rationals = (0 until 1000).map(i ⇒ Rational(1, i + 1))
 th.pbenchOffWarm("sum 1000 Rationals 1/x")(th.Warm(rationals.reduce(_ + _)))(th.Warm(Reducer.reduce(rationals)(_ + _).get))
 ```
+
+As you can see from the results, there is a significant performance benefit in hierarchical reduction. Note that this would also work for a very large stream of rationals.
 
 Results:
 ```
