@@ -23,6 +23,25 @@ Reducer.reduce(Seq(1,2,3,4,5,6,7,8))(_ + _)
 ((1+2)+(3+4))+((5+6)+(7+8))
 ```
 
+ASCII art:
+```
+              36
+             / \
+            /   \
+           /     \
+          /       \
+         /         \
+        /           \
+       /             \
+      10              26
+     / \             / \
+    /   \           /   \
+   /     \         /     \
+  3       7       11      15
+ / \     / \     / \     / \
+1   2   3   4   5   6   7   8 
+```
+
 ### Benchmarks
 
 See the [Benchmarks](src/test/com/rklaehn/sonicreducer/SonicReducerBench.scala) for examples on how to use the Reducer. To run the benchmarks, use `sbt sonicReducerJVM/test:run`.
