@@ -1,5 +1,7 @@
 # SonicReducer
 
+This library is named after a song I was listening to when I wrote it.
+
 ## Overview
 
 This is a tiny library for reducing arrays or traversables in an hierarchical way. This can turn O(n^2) operations into O(n log(n)) operations in some cases.
@@ -23,7 +25,7 @@ Reducer.reduce(Seq(1,2,3,4,5,6,7,8))(_ + _)
 
 ### Benchmarks
 
-See the [Benchmarks](src/test/com/rklaehn/sonicreducer/SonicReducerBench.scala) for examples on how to use. To run the benchmarks, use `sbt sonicReducerJVM/test:run`.
+See the [Benchmarks](src/test/com/rklaehn/sonicreducer/SonicReducerBench.scala) for examples on how to use the Reducer. To run the benchmarks, use `sbt sonicReducerJVM/test:run`.
 
 Here is an example for summing the rational numbers 1/1 + 1/2 + 1/3 + 1/4 + ...
 
