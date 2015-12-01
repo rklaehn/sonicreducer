@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rklaehn/sonicreducer.png)](https://travis-ci.org/rklaehn/sonicreducer)
+
 # SonicReducer
 
 This library is named after a song I was listening to when I wrote it.
