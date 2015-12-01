@@ -5,7 +5,7 @@
 This is a tiny library for reducing sequences in an hierarchical way. I mainly published this to teach myself how to
 publish to maven, but you might nevertheless find it useful.
 
-``
+```
 Array(1,2,3,4).reduceLeft(_ + _)
 
 (((1+2)+3)+4)
