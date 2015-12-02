@@ -42,7 +42,7 @@ lazy val sonicReducerSettings = Seq(
     <developers>
       <developer>
         <id>r_k</id>
-        <name>R&uuml;diger Klaehn</name>
+        <name>R&#xFC;diger Klaehn</name>
         <url>http://github.com/rklaehn/</url>
       </developer>
     </developers>
