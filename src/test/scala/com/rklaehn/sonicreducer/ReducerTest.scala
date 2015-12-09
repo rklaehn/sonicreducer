@@ -14,4 +14,13 @@ class ReducerTest extends FunSuite {
   test("reduceTraversable") {
     assert(test.sum === Reducer.reduce(test)(_ + _).get)
   }
+
+  test("statefulApi") {
+    val r0 = Reducer[Int](_ + _)
+    assert(-1 === r0.resultOrElse(-1))
+
+    val r4 = Reducer[Int](_ + _)
+    test.foreach(r4)
+    assert(test.sum === r4.resultOrElse(-1))
+  }
 }

@@ -8,6 +8,8 @@ package com.rklaehn.sonicreducer
  */
 sealed abstract class Reducer[T] extends (T ⇒ Unit) {
   def result(): Option[T]
+
+  def resultOrElse(value: T): T
 }
 
 /**
@@ -99,6 +101,11 @@ object Reducer {
       count += 1
       val weight = Integer.numberOfTrailingZeros(count)
       current(weight) = reduceTo(weight, value.asInstanceOf[AnyRef])
+    }
+
+    def resultOrElse(default: T): T = {
+      val result = reduceTo(32)
+      if (result eq null) default else result.asInstanceOf[T]
     }
 
     def result(): Option[T] = {
