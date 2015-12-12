@@ -67,14 +67,14 @@ lazy val noPublish = Seq(
   publishArtifact := false)
 
 lazy val root = project.in(file("."))
-  .aggregate(sonicReducerJVM, sonicReducerJS)
+  .aggregate(coreJVM, coreJS)
   .settings(name := "sonicreducer-root")
   .settings(sonicReducerSettings: _*)
   .settings(noPublish: _*)
 
-lazy val sonicReducer = crossProject.crossType(CrossType.Pure).in(file("."))
+lazy val core = crossProject.crossType(CrossType.Pure).in(file("."))
   .settings(name := "sonicreducer")
   .settings(sonicReducerSettings: _*)
 
-lazy val sonicReducerJVM = sonicReducer.jvm
-lazy val sonicReducerJS = sonicReducer.js
+lazy val coreJVM = core.jvm
+lazy val coreJS = core.js
