@@ -68,7 +68,7 @@ lazy val noPublish = Seq(
 
 lazy val root = project.in(file("."))
   .aggregate(coreJVM, coreJS)
-  .settings(name := "sonicreducer-root")
+  .settings(name := "root")
   .settings(sonicReducerSettings: _*)
   .settings(noPublish: _*)
 
