@@ -7,7 +7,10 @@ package com.rklaehn.sonicreducer
  * @tparam T the element and result type
  */
 sealed abstract class Reducer[T] extends (T ⇒ Unit) {
-  def result(): Option[T]
+
+  def result: T
+
+  def resultOption(): Option[T]
 
   def resultOrElse(value: T): T
 }
@@ -56,7 +59,7 @@ object Reducer {
   def reduce[T](elements: TraversableOnce[T])(op: (T, T) ⇒ T): Option[T] = {
     val reducer = apply(op)
     elements.foreach(reducer)
-    reducer.result()
+    reducer.resultOption()
   }
 
   /**
@@ -103,12 +106,17 @@ object Reducer {
       current(weight) = reduceTo(weight, value.asInstanceOf[AnyRef])
     }
 
+    def result: T = {
+      val result = reduceTo(32)
+      if (result ne null) result.asInstanceOf[T] else throw new NoSuchElementException
+    }
+
     def resultOrElse(default: T): T = {
       val result = reduceTo(32)
       if (result eq null) default else result.asInstanceOf[T]
     }
 
-    def result(): Option[T] = {
+    def resultOption(): Option[T] = {
       count = 0
       Option(reduceTo(32)).asInstanceOf[Option[T]]
     }

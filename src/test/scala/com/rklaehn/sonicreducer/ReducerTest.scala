@@ -19,6 +19,14 @@ class ReducerTest extends FunSuite {
     val r0 = Reducer[Int](_ + _)
     assert(-1 === r0.resultOrElse(-1))
 
+    intercept[NoSuchElementException] {
+      Reducer[Int](_ + _).result
+    }
+
+    val r1 = Reducer[Int](_ + _)
+    r1(1)
+    assert(1 == r1.result)
+
     val r4 = Reducer[Int](_ + _)
     test.foreach(r4)
     assert(test.sum === r4.resultOrElse(-1))
