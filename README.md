@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/rklaehn/sonicreducer.png)](https://travis-ci.org/rklaehn/sonicreducer)
 [![codecov.io](http://codecov.io/github/rklaehn/sonicreducer/coverage.svg?branch=master)](http://codecov.io/github/rklaehn/sonicreducer?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.rklaehn/sonicreducer_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.rklaehn/sonicreducer_2.11)
+[![Scaladoc](http://javadoc-badge.appspot.com/com.rklaehn/sonicreducer_2.11.svg?label=scaladoc)](http://javadoc-badge.appspot.com/com.rklaehn/sonicreducer_2.11)
 
 # SonicReducer
 
