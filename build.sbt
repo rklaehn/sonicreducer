@@ -2,11 +2,11 @@ import ReleaseTransformations._
 
 lazy val sonicReducerSettings = Seq(
   organization := "com.rklaehn",
-  scalaVersion := "2.11.7",
-  crossScalaVersions := Seq("2.10.5", "2.11.7"),
+  scalaVersion := "2.11.8",
+  crossScalaVersions := Seq("2.10.6", "2.11.8"),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
-    "org.scalatest" %%% "scalatest" % "3.0.0-M7" % "test",
+    "org.scalatest" %%% "scalatest" % "3.0.0-M8" % "test",
     "org.spire-math" %% "spire" % "0.11.0" % "test",
 
     // thyme
