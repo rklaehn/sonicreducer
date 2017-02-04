@@ -2,12 +2,12 @@ import ReleaseTransformations._
 
 lazy val sonicReducerSettings = Seq(
   organization := "com.rklaehn",
-  scalaVersion := "2.11.8",
-  crossScalaVersions := Seq("2.10.6", "2.11.8"),
+  scalaVersion := "2.12.1",
+  crossScalaVersions := Seq("2.11.8", "2.12.1"),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
-    "org.scalatest" %%% "scalatest" % "3.0.0-M8" % "test",
-    "org.spire-math" %% "spire" % "0.11.0" % "test",
+    "org.scalatest" %%% "scalatest" % "3.0.1" % "test",
+    "org.spire-math" %% "spire" % "0.13.0" % "test",
 
     // thyme
     "ichi.bench" % "thyme" % "0.1.1" % "test" from "https://github.com/Ichoran/thyme/raw/9ff531411e10c698855ade2e5bde77791dd0869a/Thyme.jar"
