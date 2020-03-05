@@ -6,7 +6,7 @@ lazy val sonicReducerSettings = Seq(
   crossScalaVersions := Seq("2.11.12", "2.12.6"),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
-    "org.scalatest" %%% "scalatest" % "3.0.1" % "test",
+    "org.scalatest" %%% "scalatest" % "3.1.1" % "test",
     "org.spire-math" %% "spire" % "0.13.0" % "test",
 
     // thyme
