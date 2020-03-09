@@ -1,5 +1,4 @@
 import ReleaseTransformations._
-import sbtcrossproject.CrossPlugin.autoImport.{crossProject, CrossType}
 
 lazy val sonicReducerSettings = Seq(
   organization := "com.rklaehn",
@@ -74,7 +73,8 @@ lazy val root = project.in(file("."))
   .settings(noPublish: _*)
 
 lazy val core = crossProject(JSPlatform, JVMPlatform)
-  .crossType(CrossType.Pure).in(file("."))
+  .crossType(CrossType.Pure)
+  .in(file("."))
   .settings(name := "sonicreducer")
   .settings(sonicReducerSettings: _*)
 
