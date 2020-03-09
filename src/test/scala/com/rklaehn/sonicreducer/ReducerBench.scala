@@ -12,7 +12,7 @@ object ReducerBench extends App {
   val strings = (0 until 1000).map(_.toString)
   th.pbenchOffWarm("concatenate 1000 String")(th.Warm(strings.reduce(_ + _)))(th.Warm(Reducer.reduce(strings)(_ + _).get))
 
-  val rationals = (0 until 1000).map(i ⇒ Rational(1, i + 1))
+  val rationals = (0 until 1000).map(i => Rational(1, i + 1))
   th.pbenchOffWarm("sum 1000 Rationals 1/x")(th.Warm(rationals.reduce(_ + _)))(th.Warm(Reducer.reduce(rationals)(_ + _).get))
 
 }

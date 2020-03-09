@@ -2,12 +2,12 @@ import ReleaseTransformations._
 
 lazy val sonicReducerSettings = Seq(
   organization := "com.rklaehn",
-  scalaVersion := "2.12.6",
-  crossScalaVersions := Seq("2.11.12", "2.12.6"),
+  scalaVersion := "2.13.1",
+  crossScalaVersions := Seq("2.11.12", "2.12.6", "2.13.1"),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
-    "org.scalatest" %%% "scalatest" % "3.0.1" % "test",
-    "org.spire-math" %% "spire" % "0.13.0" % "test",
+    "org.scalatest" %%% "scalatest" % "3.1.1" % "test",
+    "org.typelevel" %% "spire" % "0.17.0-M1" % "test",
 
     // thyme
     "ichi.bench" % "thyme" % "0.1.1" % "test" from "https://github.com/Ichoran/thyme/raw/9ff531411e10c698855ade2e5bde77791dd0869a/Thyme.jar"
@@ -27,9 +27,9 @@ lazy val sonicReducerSettings = Seq(
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := Function.const(false),
-  publishTo <<= version { v =>
+  publishTo := {
     val nexus = "https://oss.sonatype.org/"
-    if (v.trim.endsWith("SNAPSHOT"))
+    if (version.value.trim.endsWith("SNAPSHOT"))
       Some("Snapshots" at nexus + "content/repositories/snapshots")
     else
       Some("Releases" at nexus + "service/local/staging/deploy/maven2")
@@ -72,7 +72,9 @@ lazy val root = project.in(file("."))
   .settings(sonicReducerSettings: _*)
   .settings(noPublish: _*)
 
-lazy val core = crossProject.crossType(CrossType.Pure).in(file("."))
+lazy val core = crossProject(JSPlatform, JVMPlatform)
+  .crossType(CrossType.Pure)
+  .in(file("."))
   .settings(name := "sonicreducer")
   .settings(sonicReducerSettings: _*)
 

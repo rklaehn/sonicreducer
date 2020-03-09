@@ -1,8 +1,8 @@
 package com.rklaehn.sonicreducer
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
 
-class ReducerTest extends FunSuite {
+class ReducerTest extends AnyFunSuite {
   val test = Array(1, 2, 3, 4)
 
   test("reduceArray") {

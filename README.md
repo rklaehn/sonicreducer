@@ -55,7 +55,7 @@ Here is an example for summing the rational numbers 1/1 + 1/2 + 1/3 + 1/4 + ...
 
 ```
 val th = Thyme.warmed(warmth = Thyme.HowWarm.BenchOff, verbose = println)
-val rationals = (0 until 1000).map(i ⇒ Rational(1, i + 1))
+val rationals = (0 until 1000).map(i => Rational(1, i + 1))
 th.pbenchOffWarm("sum 1000 Rationals 1/x")(th.Warm(rationals.reduce(_ + _)))(th.Warm(Reducer.reduce(rationals)(_ + _).get))
 ```
 

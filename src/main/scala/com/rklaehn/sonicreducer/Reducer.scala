@@ -6,7 +6,7 @@ package com.rklaehn.sonicreducer
  * side-effecting, and the reducer should no longer be used after calling result(). This is similar to a typical builder.
  * @tparam T the element and result type
  */
-sealed abstract class Reducer[T] extends (T ⇒ Unit) {
+sealed abstract class Reducer[T] extends (T => Unit) {
 
   def result: T
 
@@ -35,14 +35,14 @@ object Reducer {
    * @tparam T the element type
    * @return an opt containing the result, or Opt.empty[T] if the array is of size 0
    */
-  def reduceArray[T](elements: Array[T])(op: (T, T) ⇒ T): Option[T] = if (elements.isEmpty) Option.empty[T] else {
+  def reduceArray[T](elements: Array[T])(op: (T, T) => T): Option[T] = if (elements.isEmpty) Option.empty[T] else {
     def m(a: Int, b: Int): Int = {
       (a + b) / 2
     }
     def reduce0(i0: Int, i1: Int): T = i1 - i0 match {
-      case 1 ⇒ elements(i0)
-      case 2 ⇒ op(elements(i0), elements(i0 + 1))
-      case _ ⇒
+      case 1 => elements(i0)
+      case 2 => op(elements(i0), elements(i0 + 1))
+      case _ =>
         val im = m(i0, i1)
         op(reduce0(i0, im), reduce0(im, i1))
     }
@@ -56,7 +56,7 @@ object Reducer {
    * @tparam T the element and result type
    * @return an opt containing the result, or Opt.empty[T] if the collection is of size 0
    */
-  def reduce[T](elements: TraversableOnce[T])(op: (T, T) ⇒ T): Option[T] = {
+  def reduce[T](elements: TraversableOnce[T])(op: (T, T) => T): Option[T] = {
     val reducer = apply(op)
     elements.foreach(reducer)
     reducer.resultOption()
@@ -70,9 +70,9 @@ object Reducer {
    * @tparam T the element and result type
    * @return a stateful reducer that can be fed elements by calling apply
    */
-  def apply[T](op: (T, T) ⇒ T): Reducer[T] = new Impl[T](op)
+  def apply[T](op: (T, T) => T): Reducer[T] = new Impl[T](op)
 
-  private final class Impl[T](op: (T, T) ⇒ T) extends Reducer[T] {
+  private final class Impl[T](op: (T, T) => T) extends Reducer[T] {
 
     private[this] var count = 0
 
