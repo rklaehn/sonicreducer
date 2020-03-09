@@ -2,8 +2,8 @@ import ReleaseTransformations._
 
 lazy val sonicReducerSettings = Seq(
   organization := "com.rklaehn",
-  scalaVersion := "2.12.6",
-  crossScalaVersions := Seq("2.11.12", "2.12.6"),
+  scalaVersion := "2.13.1",
+  crossScalaVersions := Seq("2.11.12", "2.12.6", "2.13.1"),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
     "org.scalatest" %%% "scalatest" % "3.1.1" % "test",
