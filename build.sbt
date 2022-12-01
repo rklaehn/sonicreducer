@@ -2,15 +2,11 @@ import ReleaseTransformations._
 
 lazy val sonicReducerSettings = Seq(
   organization := "com.rklaehn",
-  scalaVersion := "2.13.1",
-  crossScalaVersions := Seq("2.11.12", "2.12.6", "2.13.1"),
+  scalaVersion := "3.2.1",
+  crossScalaVersions := Seq( "2.13.10", "3.0.2", "3.1.3", "3.2.1"),
   libraryDependencies ++= Seq(
-    "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
-    "org.scalatest" %%% "scalatest" % "3.1.1" % "test",
-    "org.typelevel" %% "spire" % "0.17.0-M1" % "test",
-
-    // thyme
-    "ichi.bench" % "thyme" % "0.1.1" % "test" from "https://github.com/Ichoran/thyme/raw/9ff531411e10c698855ade2e5bde77791dd0869a/Thyme.jar"
+    "org.scalatest" %%% "scalatest" % "3.2.14" % "test",
+    "org.typelevel" %% "spire" % "0.18.0" % "test"
   ),
   scalacOptions ++= Seq(
     "-deprecation",
@@ -25,7 +21,7 @@ lazy val sonicReducerSettings = Seq(
   releaseCrossBuild := true,
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   publishMavenStyle := true,
-  publishArtifact in Test := false,
+  Test / publishArtifact := false,
   pomIncludeRepository := Function.const(false),
   publishTo := {
     val nexus = "https://oss.sonatype.org/"
@@ -66,8 +62,7 @@ lazy val noPublish = Seq(
   publishLocal := {},
   publishArtifact := false)
 
-lazy val root = project.in(file("."))
-  .aggregate(coreJVM, coreJS)
+lazy val root = coreAggregate
   .settings(name := "root")
   .settings(sonicReducerSettings: _*)
   .settings(noPublish: _*)
@@ -80,3 +75,13 @@ lazy val core = crossProject(JSPlatform, JVMPlatform)
 
 lazy val coreJVM = core.jvm
 lazy val coreJS = core.js
+lazy val coreAggregate =
+  project.in(file("."))
+    .aggregate(coreJVM, coreJS)
+
+lazy val bench = (project in file("bench"))
+  .settings(noPublish: _*)
+  .settings(sonicReducerSettings: _*)
+  .settings(name := "bench")
+  .dependsOn(coreAggregate % "test -> test")
+  .enablePlugins(JmhPlugin)

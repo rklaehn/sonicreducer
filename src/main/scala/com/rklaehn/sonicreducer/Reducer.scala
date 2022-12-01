@@ -56,9 +56,9 @@ object Reducer {
    * @tparam T the element and result type
    * @return an opt containing the result, or Opt.empty[T] if the collection is of size 0
    */
-  def reduce[T](elements: TraversableOnce[T])(op: (T, T) => T): Option[T] = {
+  def reduce[T](elements: IterableOnce[T])(op: (T, T) => T): Option[T] = {
     val reducer = apply(op)
-    elements.foreach(reducer)
+    elements.iterator.foreach(reducer)
     reducer.resultOption()
   }
 

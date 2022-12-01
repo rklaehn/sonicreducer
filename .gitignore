@@ -18,6 +18,7 @@ project/plugins/project/
 
 # IDEA
 .idea
+.bsp
 
 # Joe
 *~
